@@ -9,6 +9,10 @@ import java.awt.event.WindowEvent;
  */
 public class MyFrame extends Frame{
 
+    protected MyFrame(String s){
+        super(s);
+    }
+
     /**
      * 加载窗口
      */
@@ -26,6 +30,20 @@ public class MyFrame extends Frame{
                 System.exit(0);
             }
         });//关闭窗口功能
+    }
+
+    /**
+     * 利用双缓冲技术处理闪烁
+     */
+    private Image offScreenImage = null;
+    @Override
+    public void update(Graphics g){
+        if (offScreenImage == null) {
+            offScreenImage = this.createImage(this.getSize().width, this.getSize().height);
+        }
+        Graphics gOff = offScreenImage.getGraphics();
+        print(gOff);
+        g.drawImage(offScreenImage, 0, 0, null);
     }
 
     /**

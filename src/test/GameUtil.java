@@ -13,7 +13,7 @@ public class GameUtil {
 
     private GameUtil(){} //工具类通常会将构造方法私有
 
-    public static Image getImage(String path){
+    static Image getImage(String path){
         URL u = GameUtil.class.getClassLoader().getResource(path);
         BufferedImage img = null;
         try {
